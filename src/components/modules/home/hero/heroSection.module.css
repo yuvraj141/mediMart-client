@@ -1,0 +1,7 @@
+.banner{
+    background: url("../../../../assets/Hero\ Section.png");
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
