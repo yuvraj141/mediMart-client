@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { loginUser } from "@/services/authServices";
 import { useUser } from "@/context/UserContext";
+import { useRouter, useSearchParams } from "next/navigation";
 const LoginForm=()=>{
 const form = useForm({
     resolver: zodResolver(loginSchema)
@@ -19,6 +20,9 @@ const form = useForm({
   const {
     formState: { isSubmitting },
   } = form;
+    const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirectPath");
+  const router = useRouter();
   //onSubmit
   const onSubmit:SubmitHandler<FieldValues>=async(data)=>{
     console.log('login data :',data);
@@ -28,6 +32,11 @@ const form = useForm({
       console.log(res);
       if(res.success){
         toast.success(res?.message)
+         if (redirect) {
+          router.push(redirect);
+        } else {
+          router.push("/");
+        }
       }else{
         toast.error(res?.message)
       }

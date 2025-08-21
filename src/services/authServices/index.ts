@@ -59,7 +59,7 @@ export const getCurrentUser=async()=>{
         return null
     }
 }
-//getNewToken
+//getNewToken using refresh token
 export const getNewToken = async () => {
   try {
     const res = await fetch(

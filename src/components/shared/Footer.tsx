@@ -5,9 +5,9 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="bg-green-950 text-white mt-10">
+    <footer className="bg-[#f1f4f9] text-white mt-10">
       <Separator />
-      <div className="container mx-auto py-10 flex flex-col gap-6 text-sm items-center text-green-300">
+      <div className="container mx-auto py-10 flex flex-col gap-6 text-sm items-center text-black">
         {/* Top section */}
         <div className="flex flex-col items-center gap-4">
           <p className="text-center">&copy; 2025 MediMart. All rights reserved.</p>

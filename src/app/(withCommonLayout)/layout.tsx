@@ -1,15 +1,34 @@
-import Footer from "../../components/shared/Footer"
-import Navbar from "../../components/shared/Navbar"
 
-const CommonLayout=({children}:{children:React.ReactNode})=>{
-    return(
-        <>
-        <Navbar/>
-        <main className="min-h-screen">
-        {children}
-        </main>
-        <Footer/>
-        </>
-    )
+import CustomSidebar from "@/components/modules/home/customSidebar";
+import Footer from "@/components/shared/Footer";
+
+const CommonLayout=async({
+  children,
+}: {
+  children: React.ReactNode;
+}) =>{
+
+
+  return (
+    <>
+      <CustomSidebar/>
+   
+       <div className="pt-30 min-h-screen">
+             {children}
+       </div>
+
+ <div className="w-full ">
+    <Footer />
+ </div>
+   
+    </>
+  );
 }
+
 export default CommonLayout
+
+
+
+
+
+

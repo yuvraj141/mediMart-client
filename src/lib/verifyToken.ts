@@ -1,9 +1,9 @@
-'user server'
+'use server'
 
 import { getNewToken } from "@/services/authServices"
 import { jwtDecode } from "jwt-decode"
 import { cookies } from "next/headers"
-
+//JWT.IO
 export const isTokenExpired=async(token:string):Promise<boolean>=>{
     if(!token) return true
     try {
@@ -14,13 +14,17 @@ export const isTokenExpired=async(token:string):Promise<boolean>=>{
     return true;
     }
 }
-export const getValidation=async():Promise<string>=>{
-    const cookieStore=await cookies()
-    let token=cookieStore.get('accessToken')!.value
-    if(!token || (await isTokenExpired(token))){
-        const {data}=await getNewToken()
-        token=data?.accessToken
-        cookieStore.set('accessToken',token)
-    }
- return token
-}
+//create new token using refresh token .use this where token is needed in authorization
+export const getValidToken = async (): Promise<string> => {
+  const cookieStore = await cookies();
+
+  let token = cookieStore.get("accessToken")!.value;
+
+  if (!token || (await isTokenExpired(token))) {
+    const { data } = await getNewToken();
+    token = data?.accessToken;
+    cookieStore.set("accessToken", token);
+  }
+
+  return token;
+};
