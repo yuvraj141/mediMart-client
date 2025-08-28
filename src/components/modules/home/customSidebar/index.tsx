@@ -27,6 +27,9 @@ import { protectedRoutes } from "@/constants";
 import { getAllCategories } from '@/services/category';
 import { toast } from 'sonner';
 import { useSearchParams } from 'next/navigation';
+import { useAppSelector } from '@/redux/hooks';
+import { orderedProductsSelector } from '@/redux/features/cartSlice';
+
 const CustomSidebar = () => {
  const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState<any[]>([]);
@@ -48,7 +51,6 @@ const CustomSidebar = () => {
     };
     fetchData();
   }, []);
-console.log(categories,'all categories from navbar');
 
 const [menuOpen,setMenuOpen]=useState(false)
 
@@ -71,6 +73,8 @@ const handleLogOut=()=>{
     router.push('/')
   }
 }
+ const products = useAppSelector(orderedProductsSelector);
+//  console.log('products from custom side bar :',products);
   return (
   <div>
       <div className='fixed top-0 left-0   z-40 h-24  w-full shadow-2xl bg-red-700'>
@@ -82,39 +86,37 @@ const handleLogOut=()=>{
                 <Image src={logo} alt="logo"></Image>
                </Link>
 
-               <div className="max-w-md  flex-grow">
-          <input
+               <div className="max-w-sm  md:max-w-md   md:flex-grow ">
+         <div className=" mx-auto">
+           <input
             type="text"
             placeholder="Search for products"
-            className="w-full max-w-6xl text-black border bg-white border-white rounded-full py-2 px-5"
+            className="mx-auto pl-5 max-w-sm  md:w-full md:max-w-6xl justify-center text-center text-black  bg-white rounded-full py-2 px-5"
           />
+         </div>
         </div>
 
-       <div className="flex gap-2 items-center justify-center">
-         <Link href='/cart'><ShoppingCart className="text-white"/>
+       <div className="flex gap-4 items-center justify-center">
+         <Link href='/cart' className='relative'><ShoppingCart className="text-white "/><span className='absolute text-white -top-2 -right-2 '>{products?.length}</span>
         </Link>
+
         {
           user?
-           <Button  onClick={handleLogOut} variant='outline' className="text-black hover:cursor-pointer">LogOut</Button>
-          :
-         <Link href='/login' passHref>
-          <Button variant='outline' className="">Login</Button>
-         </Link>
-        }
-        {/* <Button variant='outline' className="text-green-400 border-green-300">Login</Button> */}
-
-        <DropdownMenu>
-  <DropdownMenuTrigger>
- <Avatar>
+          (  <DropdownMenu  >
+  <DropdownMenuTrigger className=''>
+ <Avatar className='cursor-pointer'>
   <AvatarImage src="https://github.com/shadcn.png" />
   <AvatarFallback>User</AvatarFallback>
 </Avatar>
   </DropdownMenuTrigger>
-  <DropdownMenuContent>
-    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+  <DropdownMenuContent className='hover:bg-red-500 cursor-pointer' >
+    <DropdownMenuLabel >My Account</DropdownMenuLabel>
     <DropdownMenuSeparator />
-    <DropdownMenuItem>
-      <Link href={`/${user?.role}/dashboard`}>Dashboard</Link>
+    <DropdownMenuItem className=''>
+      <Link className='' href={`/${user?.role}/dashboard`}>Dashboard</Link>
+    </DropdownMenuItem>
+    <DropdownMenuItem className='hover:bg-red-500'>
+      <Link href={`/${user?.role}/my-ordered-products`}>My Orders</Link>
     </DropdownMenuItem>
   <DropdownMenuItem
                     className=" cursor-pointer"
@@ -126,7 +128,15 @@ const handleLogOut=()=>{
     <DropdownMenuItem>Team</DropdownMenuItem>
     <DropdownMenuItem>Subscription</DropdownMenuItem>
   </DropdownMenuContent>
-</DropdownMenu>
+</DropdownMenu>)
+          :
+        ( <Link href='/login' passHref>
+          <Button variant='outline' className="cursor-pointer">Login</Button>
+         </Link>)
+        }
+        {/* <Button variant='outline' className="text-green-400 border-green-300">Login</Button> */}
+
+       
        
        </div>
             </div>
@@ -136,9 +146,12 @@ const handleLogOut=()=>{
 <div className='p-2  flex shadow bg-white '>
     <div className='flex  gap-2 font-bold flex-1'  >
         <Menu onClick={handleMenubar}/>
-        <span>shop by category</span>
+        <span className='hidden sm:inline'>shop by category</span>
     </div>
-    <div className='flex-1 font-semibold flex  gap-5 items-center '>
+    <div className='flex text-sm   sm:flex-1 font-semibold   gap-5 items-center '>
+        <Link href={'/products'} passHref>
+        <div className='hover:text-blue-500 cursor-pointer'>All Products</div>
+        </Link>
         <div className='hover:text-blue-500 cursor-pointer'>Great deals</div>
         <div className='hover:text-blue-500 cursor-pointer'>Brands</div>
         <div className='hover:text-blue-500 cursor-pointer'>Support</div>

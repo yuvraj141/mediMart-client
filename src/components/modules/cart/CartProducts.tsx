@@ -4,11 +4,11 @@ import emptyCart from "@/assets/empty-cart.png";
 import { TProduct } from "@/types";
 import CartProductCard from "./CartProductCart";
 import { useAppSelector } from "@/redux/hooks";
-import { orderedProductsSelector } from "@/redux/features/cartSlice";
+import { CartProduct, orderedProductsSelector } from "@/redux/features/cartSlice";
 
 export default function CartProducts() {
   const products=useAppSelector(orderedProductsSelector)
-
+console.log('from carts products :',products);
   return (
     <div className="border-2 border-white bg-background brightness-105 rounded-md col-span-8 h-full row-span-3 p-10 space-y-5">
       {products.length === 0 && (
@@ -23,7 +23,7 @@ export default function CartProducts() {
           </div>
         </div>
       )}
-      {products?.map((product: TProduct) => (
+      {products?.map((product: CartProduct) => (
         <CartProductCard key={product._id} product={product} />
       ))}
     </div>

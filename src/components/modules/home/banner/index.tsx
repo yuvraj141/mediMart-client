@@ -10,10 +10,10 @@ import { getAllCategories } from '@/services/category'
 
 const Banner=async()=> {
     const {data:categories}=await getAllCategories()
-     const selectedCategories = categories.filter((cat: any) =>
+     const selectedCategories = categories?.filter((cat: any) =>
     ["Fish", "Meat", "Frozen"].includes(cat.name)
   );
-    console.log(categories);
+  //  console.log(categories);
   return (
     <NMContainer>
 <div className="flex gap-2">

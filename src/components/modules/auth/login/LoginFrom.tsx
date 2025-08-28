@@ -12,6 +12,8 @@ import Link from "next/link";
 import { loginUser } from "@/services/authServices";
 import { useUser } from "@/context/UserContext";
 import { useRouter, useSearchParams } from "next/navigation";
+import shwapnologo from '../../../../assets/shwapno_logo.png'
+
 const LoginForm=()=>{
 const form = useForm({
     resolver: zodResolver(loginSchema)
@@ -47,9 +49,9 @@ const form = useForm({
     return(
         <div className="border-2 space-y-3 border-gray-300 rounded-xl flex-grow max-w-md w-full p-5">
             <div className="flex items-center space-x-4 ">
-        <Image src={logo} alt="logo"/>
+        <Image src={shwapnologo} alt="logo"/>
         <div>
-          <h1 className="text-xl font-semibold">Login</h1>
+          <h1 className="text-xl text-red-500 font-semibold">Login</h1>
           <p className="font-extra-light text-sm text-gray-600">Welcome back!</p>
         </div>
       </div>
@@ -83,8 +85,8 @@ const form = useForm({
             )}
           />
           {/* button */}
-         <div>
-           <Button className="my-3 w-full text-white border-green-400 bg-green-800" variant='outline'>{isSubmitting? 'Logging...':'Login'}</Button>
+         <div className="text-white">
+           <Button className="my-3 w-full  hover:bg-red-600 hover:text-white cursor-pointer bg-red-700" variant='outline'>{isSubmitting? 'Logging...':'Login'}</Button>
 
          </div>
   </form>

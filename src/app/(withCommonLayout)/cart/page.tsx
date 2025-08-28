@@ -9,12 +9,18 @@ const CartPage=()=>{
 
     return (
         <NMContainer>
-            <ProductBanner title="Cart Page" path="Home - Cart" />
-      <div className="grid grid-cols-12 gap-8 my-5">
-   <CartProducts/>
+            {/* <ProductBanner title="Cart Page" path="Home - Cart" /> */}
+       <div className="flex flex-col md:flex-row lg:flex-row gap-8 my-5">
+        <div>
+ <CartProducts/>
+        </div>
+        
+          <div>
    <Coupon/>
    <Address />
         <PaymentDetails />
+        </div>
+
       </div>
         </NMContainer>
     )

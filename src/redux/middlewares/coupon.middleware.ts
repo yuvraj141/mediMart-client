@@ -18,5 +18,5 @@ if(action.type===addProduct.type ||
     next(action)
 }
 // console.log(action);
-    next(action)
+  // next(action)
 }

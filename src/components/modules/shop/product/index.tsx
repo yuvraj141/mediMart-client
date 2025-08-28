@@ -17,8 +17,9 @@ const ManageProducts=({products,meta
  
     const router=useRouter()
     const [selectedIds,setSelectedIds]=useState<string[]|[]>([])
+
     const handleView=(product:TProduct)=>{
-        console.log('viewing product',product);
+        console.log('viewing product :',product);
     }
      const handleDelete=(productId:string)=>{
             console.log('deleting product id :',productId);
@@ -144,12 +145,13 @@ const ManageProducts=({products,meta
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold"> Total Products count:{meta?.total}</h1>
         <div className="flex items-center gap-2">
-          <Button
+          <Button className='cursor-pointer transition-transform duration-300 bg-red-600 hover:bg-red-600'
             onClick={() => router.push("/user/shop/products/add-product")}
             size="sm"
           >
             Add Product <Plus />
           </Button>
+          
           <DiscountModal
             selectedIds={selectedIds}
             setSelectedIds={setSelectedIds}

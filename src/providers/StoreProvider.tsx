@@ -18,6 +18,8 @@ export default function StoreProvider({
   }
 const persistedStore=persistStore(storeRef.current)
   return (
-  <Provider store={storeRef.current}><PersistGate loading={<Loading/>} persistor={persistedStore}>{children}</PersistGate>
+  <Provider store={storeRef.current}>
+    <PersistGate loading={<Loading/>} persistor={persistedStore}>
+    {children}</PersistGate>
   </Provider>)
 }

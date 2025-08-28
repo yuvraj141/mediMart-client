@@ -63,7 +63,7 @@ const dispatch=useAppDispatch()
               <Button
                 disabled={!couponInput}
                 type="submit"
-                className="w-full text-xl font-semibold py-5 "
+                className="w-full bg-red-600 hover:cursor-pointer hover:bg-red-600  text-md font-semibold py-5 "
               >
                 {isLoading? 'Applying...':"Apply" }
               </Button>

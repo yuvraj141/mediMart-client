@@ -29,8 +29,8 @@ export default function Address() {
 
   const handleShippingAddress = (address: string) => {
     dispatch(updateShippingAddress(address));
-    console.log(selectedCity);
-    console.log(shippingAddress);
+    // console.log(selectedCity);
+    // console.log(shippingAddress);
   };
 
   return (
@@ -39,8 +39,8 @@ export default function Address() {
         <h1 className="text-2xl font-bold">Address</h1>
         <p className="text-gray-500">Enter your address.</p>
         <div className="mt-5">
-          <Select onValueChange={(city) => handleCitySelect(city)}>
-            <SelectTrigger className="mb-5">
+          <Select  onValueChange={(city) => handleCitySelect(city)}>
+            <SelectTrigger className="mb-5 border-1 border-black">
               <SelectValue placeholder="Select a city" />
             </SelectTrigger>
             <SelectContent>
@@ -51,7 +51,7 @@ export default function Address() {
               ))}
             </SelectContent>
           </Select>
-          <Textarea
+          <Textarea placeholder="Any notes for us..." className="border-1 border-black"
             onChange={(e) => handleShippingAddress(e.target.value)}
             rows={5}
           />

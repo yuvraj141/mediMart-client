@@ -1,8 +1,4 @@
-import { Button } from "@/components/ui/button";
 import NMContainer from "@/components/ui/core/NMContainer";
-
-import Link from "next/link";
-
 import CarouselCard from "@/components/ui/core/CarouselCard";
 
 import { getTrendingProducts } from "@/services/products";

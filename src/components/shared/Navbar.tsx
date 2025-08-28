@@ -79,7 +79,7 @@ const handleLogOut=()=>{
            <Button  onClick={handleLogOut} variant='outline' className="text-black hover:cursor-pointer">LogOut</Button>
           :
          <Link href='/login' passHref>
-          <Button variant='outline' className="hover:cursor-pointer">Login</Button>
+          <Button  className="hover:cursor-pointer">Login</Button>
          </Link>
         }
         {/* <Button variant='outline' className="text-green-400 border-green-300">Login</Button> */}
@@ -92,11 +92,17 @@ const handleLogOut=()=>{
 </Avatar>
   </DropdownMenuTrigger>
   <DropdownMenuContent>
-    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+    <DropdownMenuLabel>My d Account</DropdownMenuLabel>
     <DropdownMenuSeparator />
     <DropdownMenuItem>
       <Link href={`/${user?.role}/dashboard`}>Dashboard</Link>
-    </DropdownMenuItem>
+ </DropdownMenuItem>
+
+    <DropdownMenuItem>
+      <Link href={'/my-ordered-products'} passHref>
+      My Orders</Link>
+      </DropdownMenuItem>
+    
   <DropdownMenuItem
                     className=" cursor-pointer"
                     onClick={handleLogOut}
@@ -104,7 +110,7 @@ const handleLogOut=()=>{
                     <LogOut />
                     <span>Log Out</span>
                   </DropdownMenuItem>
-    <DropdownMenuItem>Team</DropdownMenuItem>
+    
     <DropdownMenuItem>Subscription</DropdownMenuItem>
   </DropdownMenuContent>
 </DropdownMenu>

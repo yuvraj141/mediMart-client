@@ -20,7 +20,7 @@ export const getAllBrands=async()=>{
 }
 //create brand
 export const createBrand=async(brandData:FormData):Promise<any>=>{
-
+//get new token using refresh token
 const token = await getValidToken();
     try {
         const res=await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/brand/create-brand`, {
@@ -34,7 +34,7 @@ const token = await getValidToken();
     const data=res.json()
     return data
     }   catch (error: any) {
-    return Error(error);
+    return { success: false, message: error.message };
   }
     }
 

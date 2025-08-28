@@ -59,7 +59,7 @@ const cartSlice = createSlice({
     addProduct: (state, action) => {
       //checking if the product is already in cart
       const productToAdd = state.products.find(
-        (product) => product._id === action.payload._id
+        (product) => product?._id === action.payload?._id
       );
 
       if (productToAdd) {
@@ -144,8 +144,8 @@ export const orderSelector = (state: RootState) => {
   return {
     //returning object
     orderedProducts: state.cart.products.map((product) => ({
-      product: product._id,
-      quantity: product.orderQuantity,
+      product: product?._id,
+      quantity: product?.orderQuantity,
     })),
    
     shippingAddress: `${state.cart.shippingAddress} - ${state.cart.city}`,
